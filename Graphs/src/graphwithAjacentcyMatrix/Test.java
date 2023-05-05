@@ -1,14 +1,14 @@
-package graphwithAjacentMatrix;
+package graphwithAjacentcyMatrix;
 import java.util.ArrayList;
 
 public class Test {
 	public static void main(String[] args) {
-		ArrayList<Vertex> list = new ArrayList<Vertex>();
-		list.add(new Vertex("A", 0));
-		list.add(new Vertex("B", 1));
-		list.add(new Vertex("C", 2));
-		list.add(new Vertex("D", 3));
-		list.add(new Vertex("E", 4));
+		ArrayList<GraphNode> list = new ArrayList<GraphNode>();
+		list.add(new GraphNode("A", 0));
+		list.add(new GraphNode("B", 1));
+		list.add(new GraphNode("C", 2));
+		list.add(new GraphNode("D", 3));
+		list.add(new GraphNode("E", 4));
 		
 		Graph graph = new Graph(list);
 		graph.addUndirectedEdge(0, 1);
@@ -18,6 +18,8 @@ public class Test {
 		graph.addUndirectedEdge(1, 4);
 		graph.addUndirectedEdge(3, 4);
 		
-		System.out.println(graph.toString());
+		System.out.println(graph.toString()+ "\n");
+		
+		graph.bfs();
 	}
 }
