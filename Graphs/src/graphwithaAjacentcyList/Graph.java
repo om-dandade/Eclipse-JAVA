@@ -18,6 +18,13 @@ public class Graph {
 		second.connections.add(first);
 	}
 	
+	public void addDirectedEdge(int i, int j) {
+		GraphNode first = nodeList.get(i);
+		GraphNode second = nodeList.get(j);
+		
+		first.connections.add(second);
+	}
+	
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
@@ -31,7 +38,7 @@ public class Graph {
 		return sb.toString();
 	}
 	
-	//Bfs for each node
+	//BFS per node
 	private void bfsVisit(GraphNode node) {
 		LinkedList<GraphNode> queue = new LinkedList<GraphNode>();
 		queue.add(node);
@@ -80,4 +87,56 @@ public class Graph {
 			if(!node.isVisited)dfsVisit(node);
 		}
 	}
+	
+	//topological sort helper fuction
+	public void topoStack(GraphNode node, Stack<GraphNode> stack) {
+		for(GraphNode con: node.connections) {
+			if(!con.isVisited) {
+				topoStack(con, stack);
+			}
+		}
+		stack.push(node);
+		node.isVisited = true;
+	}
+	
+	public void topologicalSort() {
+		Stack<GraphNode> stack = new Stack<GraphNode>();
+		for(GraphNode node: nodeList) {
+			if(!node.isVisited) {
+				topoStack(node, stack);
+			}
+		}
+		
+		while(!stack.isEmpty()) {
+			System.out.print(stack.pop().value+" ");
+		}
+	}
+	
+	public void printPath(GraphNode node) {
+		if(node.parent != null) {
+			printPath(node.parent);
+		}
+		System.out.print(node.value+" ");
+	}
+	
+	public void bfsShortPath(GraphNode source) {
+		LinkedList<GraphNode> queue = new LinkedList<GraphNode>();
+		queue.add(source);
+		source.isVisited = true;
+		
+		while(!queue.isEmpty()) {
+			GraphNode curNode = queue.remove(0);
+			System.out.print("Printing shortest path for "+curNode.value+" : ");
+			printPath(curNode);
+			System.out.println();
+			for(GraphNode con: curNode.connections) {
+				if(!con.isVisited) {
+					queue.add(con);
+					con.isVisited = true;
+					con.parent = curNode;
+				}
+			}
+		}
+	}
+	
 }

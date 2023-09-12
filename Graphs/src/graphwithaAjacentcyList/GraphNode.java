@@ -5,6 +5,7 @@ public class GraphNode {
 	String value;
 	int index;
 	boolean isVisited = false;
+	GraphNode parent;
 	
 	ArrayList<GraphNode> connections;
 	

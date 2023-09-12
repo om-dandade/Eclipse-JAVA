@@ -4,13 +4,10 @@ import java.util.Arrays;
 
 public class Genral {
 	public static void main(String[] args) {
-		int[] arr = {1, 3, 4, 5, 2, 10, 6};
-		String[] days = {"Mond", "Tuedd", "Wed"};
+		int[] arr = {1, 2, 3, 4, 5, 6, 7, 8};
 		
-		Arrays.sort(arr, (a, b) -> Integer.compare(a, b));
-		//Arrays.sort(days, (a, b) -> Integer.compare(a.length(), b.length()));
-		
-		for(int val: arr)System.out.print(val+" ");
+		TreeNode root = TreeNode.createMinimalBST(arr);
+		root.print();
 	}
 }
 

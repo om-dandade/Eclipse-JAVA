@@ -1,0 +1,13 @@
+---------------Function to print Tree into cmd------------------
+
+public void print() {
+		printTree("");
+	}
+	
+	public void printTree(String spacing) {
+		
+		System.out.println(spacing+"├──"+data);
+		
+		if(left != null)left.printTree(spacing+"│  ");
+		if(right != null)right.printTree(spacing+"│  ");
+	}
